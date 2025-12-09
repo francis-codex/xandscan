@@ -2,8 +2,9 @@
 
 import { useState, useMemo } from "react";
 import Link from "next/link";
-import { useAllPNodes } from "@/lib/hooks";
+import { useAllPNodes, useNetworkStats } from "@/lib/hooks";
 import { NodeCard } from "@/components/NodeCard";
+import { ExportButtons } from "@/components/ExportButtons";
 import { LoadingPage } from "@/components/ui/loading";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
@@ -16,6 +17,7 @@ type StatusFilter = 'all' | 'active' | 'inactive' | 'syncing';
 
 export default function NodesPage() {
   const { data: nodes, isLoading, error } = useAllPNodes();
+  const { data: stats } = useNetworkStats();
   const [searchQuery, setSearchQuery] = useState('');
   const [statusFilter, setStatusFilter] = useState<StatusFilter>('all');
   const [sortField, setSortField] = useState<SortField>('healthScore');
@@ -125,14 +127,21 @@ export default function NodesPage() {
                 All pNodes on the network
               </p>
             </div>
-            <nav className="flex gap-4">
-              <Link href="/">
-                <Button variant="ghost">Dashboard</Button>
-              </Link>
-              <Link href="/nodes">
-                <Button variant="ghost">Nodes</Button>
-              </Link>
-            </nav>
+            <div className="flex items-center gap-4">
+              <nav className="flex gap-4">
+                <Link href="/">
+                  <Button variant="ghost">Dashboard</Button>
+                </Link>
+                <Link href="/nodes">
+                  <Button variant="ghost">Nodes</Button>
+                </Link>
+              </nav>
+              {nodes && stats && (
+                <div className="border-l pl-4 border-gray-200 dark:border-gray-800">
+                  <ExportButtons nodes={nodes} stats={stats} variant="compact" />
+                </div>
+              )}
+            </div>
           </div>
         </div>
       </header>

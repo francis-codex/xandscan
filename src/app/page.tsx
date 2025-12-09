@@ -8,8 +8,11 @@ import { NodeCard } from "@/components/NodeCard";
 import { InsightsPanel } from "@/components/InsightsPanel";
 import { AtRiskNodesCard } from "@/components/AtRiskNodesCard";
 import { HealthScoreBreakdown } from "@/components/HealthScoreBreakdown";
+import { VersionDistribution } from "@/components/VersionDistribution";
+import { ExportButtons } from "@/components/ExportButtons";
 import { LoadingPage } from "@/components/ui/loading";
 import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
 import { ArrowRight } from "lucide-react";
 import {
   generateNetworkEvents,
@@ -124,6 +127,14 @@ export default function Home() {
           <HealthScoreBreakdown health={healthBreakdown} />
         </section>
 
+        {/* Version Intelligence - Phase 2 */}
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4 text-gray-900 dark:text-gray-50">
+            Version Intelligence
+          </h2>
+          {nodes && <VersionDistribution nodes={nodes} />}
+        </section>
+
         {/* Top Performing Nodes */}
         <section>
           <div className="flex items-center justify-between mb-4">
@@ -143,6 +154,17 @@ export default function Home() {
             ))}
           </div>
         </section>
+
+        {/* Data Export - Phase 3 */}
+        {nodes && stats && (
+          <section className="mt-12">
+            <Card>
+              <CardContent className="p-6">
+                <ExportButtons nodes={nodes} stats={stats} />
+              </CardContent>
+            </Card>
+          </section>
+        )}
 
         {/* Additional Info */}
         <section className="mt-12 bg-blue-50 dark:bg-blue-950/20 rounded-lg p-6">
