@@ -107,7 +107,8 @@ export function exportFilteredNodesCSV(
   }
 
   if (filter.minHealthScore !== undefined) {
-    filtered = filtered.filter(n => (n.healthScore || 0) >= filter.minHealthScore);
+    const minScore = filter.minHealthScore;
+    filtered = filtered.filter(n => (n.healthScore || 0) >= minScore);
   }
 
   exportNodesToCSV(filtered);

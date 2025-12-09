@@ -51,6 +51,10 @@ export class PNodeClient {
         return response;
       },
       (error) => {
+        // Suppress expected network errors during development (using mock data)
+        if (process.env.NODE_ENV === 'development') {
+          return Promise.reject(error);
+        }
         console.error('[pRPC Response Error]', error.message);
         if (error.response) {
           console.error('Response data:', error.response.data);
@@ -76,7 +80,12 @@ export class PNodeClient {
 
       throw new Error(response.data.error || 'Failed to fetch pNodes');
     } catch (error) {
-      console.error('Error fetching all pNodes:', error);
+      // Expected in development - using mock data
+      if (process.env.NODE_ENV === 'development') {
+        console.info('ℹ️ Using mock pNode data (pRPC not available)');
+      } else {
+        console.error('Error fetching all pNodes:', error);
+      }
 
       // Return mock data for development
       return this.getMockPNodes();
@@ -99,7 +108,10 @@ export class PNodeClient {
 
       throw new Error(response.data.error || 'Failed to fetch pNode details');
     } catch (error) {
-      console.error(`Error fetching pNode details for ${publicKey}:`, error);
+      // Expected in development - using mock data
+      if (process.env.NODE_ENV !== 'development') {
+        console.error(`Error fetching pNode details for ${publicKey}:`, error);
+      }
 
       // Return mock data for development
       const mockNodes = this.getMockPNodes();
@@ -127,7 +139,10 @@ export class PNodeClient {
 
       throw new Error(response.data.error || 'Failed to fetch pNode metrics');
     } catch (error) {
-      console.error(`Error fetching metrics for ${publicKey}:`, error);
+      // Expected in development - using mock data
+      if (process.env.NODE_ENV !== 'development') {
+        console.error(`Error fetching metrics for ${publicKey}:`, error);
+      }
 
       // Return mock data for development
       return this.getMockMetrics(publicKey, timeframe);
@@ -148,7 +163,12 @@ export class PNodeClient {
 
       throw new Error(response.data.error || 'Failed to fetch network stats');
     } catch (error) {
-      console.error('Error fetching network stats:', error);
+      // Expected in development - using mock data
+      if (process.env.NODE_ENV === 'development') {
+        console.info('ℹ️ Using mock network stats (pRPC not available)');
+      } else {
+        console.error('Error fetching network stats:', error);
+      }
 
       // Return mock data for development
       return this.getMockNetworkStats();
