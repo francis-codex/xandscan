@@ -39,5 +39,5 @@ yarn-error.log*
 # typescript
 *.tsbuildinfo
 next-env.d.ts
-COMPETITOR_ANALYSIS.md
-docs/PRPC_INTEGRATION_COMPLETE.md
+docs/RAILWAY_DEPLOYMENT.md
+BOUNTY_SUBMISSION.md

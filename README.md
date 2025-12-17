@@ -178,16 +178,7 @@ The application includes mock data generators for development when the actual pR
 
 ## Deployment
 
-### Vercel (Recommended)
-
-1. Push your code to GitHub
-2. Import project in Vercel
-3. Configure environment variables
-4. Deploy
-
-```bash
-vercel --prod
-```
+The platform can be deployed using various methods:
 
 ### Docker
 
@@ -199,7 +190,7 @@ docker build -t xandeum-analytics .
 
 # Run container
 docker run -p 3000:3000 \
-  -e NEXT_PUBLIC_XANDEUM_RPC_URL=https://api.xandeum.network \
+  -e NEXT_PUBLIC_APP_VERSION=1.0.0 \
   xandeum-analytics
 ```
 
@@ -213,10 +204,13 @@ services:
     ports:
       - "3000:3000"
     environment:
-      - NEXT_PUBLIC_XANDEUM_RPC_URL=https://api.xandeum.network
+      - NEXT_PUBLIC_APP_VERSION=1.0.0
+      - NODE_ENV=production
 ```
 
-See [docs/DEPLOYMENT.md](./docs/DEPLOYMENT.md) for detailed instructions.
+### Production Deployment
+
+For production deployment, ensure you configure the environment variables properly. See [.env.example](./.env.example) for required configuration.
 
 ## Performance Optimization
 
