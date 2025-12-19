@@ -69,31 +69,3 @@ export function getPRpcConfig(): PRpcClientConfig {
       : DEFAULT_PRPC_CONFIG.endpoints,
   };
 }
-
-/**
- * Timeout configurations for different operations
- */
-export const TIMEOUTS = {
-  /** Quick health checks */
-  HEALTH_CHECK: 5000,
-
-  /** Standard RPC requests */
-  STANDARD_REQUEST: 30000,
-
-  /** Heavy data requests (batch operations) */
-  HEAVY_REQUEST: 60000,
-} as const;
-
-/**
- * Cache duration for different data types (in milliseconds)
- */
-export const CACHE_DURATION = {
-  /** pNode stats cache: 30 seconds */
-  PNODE_STATS: 30000,
-
-  /** All pNodes list cache: 60 seconds */
-  ALL_PNODES: 60000,
-
-  /** Network stats cache: 30 seconds */
-  NETWORK_STATS: 30000,
-} as const;

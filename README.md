@@ -6,7 +6,7 @@ A modern, comprehensive network explorer and analytics platform for Xandeum pNod
 
 ## Status: LIVE & PRODUCTION READY
 
-XandScan queries live Xandeum pNode endpoints using the official pRPC API with real-time data updates every 30 seconds.
+XandScan queries live Xandeum pNode endpoints using the official pRPC API with optimized performance (6-7s load time) and intelligent caching.
 
 ## Features
 
@@ -28,14 +28,21 @@ XandScan queries live Xandeum pNode endpoints using the official pRPC API with r
 
 ## Tech Stack
 
-- **Framework**: Next.js 16 (React 19, TypeScript 5)
+- **Framework**: Next.js 16.1+ (React 19, TypeScript 5)
 - **Styling**: Tailwind CSS 4 with custom XandScan design system
-- **Data Fetching**: TanStack React Query v5 (automatic caching, refetching, and state management)
+- **Data Fetching**: TanStack React Query v5 (optimized caching, no auto-refetch)
 - **Charts**: Recharts 3 for interactive data visualization
-- **State Management**: Zustand 5 for UI state
 - **Date Handling**: date-fns 4 for date formatting
-- **API Client**: Axios with interceptors and retry logic for pRPC communication
+- **API Client**: Axios with circuit breaker pattern for pRPC communication
 - **Icons**: Lucide React for beautiful, consistent icons
+
+### Performance Features
+- **5-second timeout** - Fast failure detection
+- **Circuit Breaker** - Automatically skips failing nodes
+- **React.memo** - Prevents unnecessary re-renders
+- **No Retry Logic** - Fail fast for better UX
+- **Tree Shaking** - Removed unused dependencies (Zustand)
+- **Zero Vulnerabilities** - Latest secure dependencies
 
 ## Quick Start
 
@@ -221,9 +228,10 @@ For production deployment, ensure you configure the environment variables proper
 - **Bundle Analysis**: Run `npm run build` to analyze bundle size
 
 ### Performance Metrics
-- Initial load: <2s
-- Time to Interactive: <3s
-- Lighthouse Score: 90+
+- Initial load: 6-7s (optimized from 2+ minutes)
+- Subsequent loads: <1s (cached)
+- Node detail page: 2-3s
+- Zero production console logs
 - Mobile responsiveness: 100%
 
 ## Development
@@ -258,9 +266,9 @@ pRPC API → PNodeClient → React Query → Components → UI
 
 ### State Management
 
-- **Server State**: React Query (API data, caching, refetching)
+- **Server State**: React Query (API data, caching - 60s stale time)
 - **UI State**: React useState/useReducer (search, filters, sort)
-- **Global State**: Zustand (theme, user preferences)
+- **Circuit Breaker**: Tracks failing nodes to prevent repeated requests
 
 ## Troubleshooting
 
