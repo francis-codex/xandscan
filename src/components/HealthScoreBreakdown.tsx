@@ -202,7 +202,7 @@ export function HealthScoreBreakdown({ health }: HealthScoreBreakdownProps) {
           {/* Storage Focus Callout */}
           <div className="mt-4 p-3 bg-purple-50 dark:bg-purple-950/20 rounded-lg border border-purple-200 dark:border-purple-800">
             <p className="text-xs text-purple-900 dark:text-purple-100">
-              <strong>Storage-First Scoring:</strong> Optimized for Xandeum's mission to provide exabyte-scale storage for Solana dApps. Storage health and availability are weighted highest (60% combined).
+              <strong>Storage-First Scoring:</strong> Optimized for Xandeum&apos;s mission to provide exabyte-scale storage for Solana dApps. Storage health and availability are weighted highest (60% combined).
             </p>
           </div>
         </div>

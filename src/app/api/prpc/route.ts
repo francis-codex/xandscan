@@ -17,17 +17,17 @@ interface JsonRpcRequest {
   jsonrpc: string;
   id: number;
   method: string;
-  params?: any;
+  params?: unknown;
 }
 
-interface JsonRpcResponse<T = any> {
+interface JsonRpcResponse<T = unknown> {
   jsonrpc: string;
   id: number | null;
   result?: T;
   error?: {
     code: number;
     message: string;
-    data?: any;
+    data?: unknown;
   };
 }
 
@@ -132,9 +132,10 @@ export async function POST(request: NextRequest) {
         'Content-Type': 'application/json',
       },
     });
-  } catch (error: any) {
+  } catch (error: unknown) {
     // Handle axios timeout errors
-    if (error.code === 'ECONNABORTED' || error.message?.includes('timeout')) {
+    const axiosError = error as { code?: string; message?: string; response?: { status?: number } };
+    if (axiosError.code === 'ECONNABORTED' || axiosError.message?.includes('timeout')) {
       return NextResponse.json(
         {
           jsonrpc: '2.0',
@@ -150,7 +151,7 @@ export async function POST(request: NextRequest) {
     }
 
     // Handle network errors
-    if (error.code === 'ECONNREFUSED' || error.code === 'ENOTFOUND') {
+    if (axiosError.code === 'ECONNREFUSED' || axiosError.code === 'ENOTFOUND') {
       return NextResponse.json(
         {
           jsonrpc: '2.0',
@@ -159,8 +160,8 @@ export async function POST(request: NextRequest) {
             code: -32000,
             message: 'Network error: Unable to connect to pNode',
             data: {
-              code: error.code,
-              message: error.message,
+              code: axiosError.code,
+              message: axiosError.message,
             },
           },
         } as JsonRpcResponse,
@@ -176,7 +177,7 @@ export async function POST(request: NextRequest) {
         error: {
           code: -32603,
           message: 'Internal error',
-          data: error.message,
+          data: axiosError.message,
         },
       } as JsonRpcResponse,
       { status: 500 }

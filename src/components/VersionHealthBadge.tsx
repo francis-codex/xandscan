@@ -12,7 +12,7 @@ interface VersionHealthBadgeProps {
 }
 
 export function VersionHealthBadge({ nodes, showIcon = true, size = 'md' }: VersionHealthBadgeProps) {
-  const { latestVersion, percentage, outdatedCount } = calculateVersionHealth(nodes);
+  const { percentage, outdatedCount } = calculateVersionHealth(nodes);
 
   const getIcon = () => {
     if (percentage === 100) return <CheckCircle className="h-4 w-4" />;

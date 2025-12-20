@@ -5,11 +5,10 @@ import Link from "next/link";
 import { useAllPNodes, useNetworkStats } from "@/lib/hooks";
 import { NodeCard } from "@/components/NodeCard";
 import { ExportButtons } from "@/components/ExportButtons";
-import { NetworkStatsGridSkeleton, NodeGridSkeleton } from "@/components/ui/skeleton";
+import { NodeGridSkeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Badge } from "@/components/ui/badge";
 import { Search, SlidersHorizontal, ArrowUpDown } from "lucide-react";
-import type { PNode } from "@/types/pnode";
 
 type SortField = 'moniker' | 'uptime' | 'storage' | 'latency' | 'healthScore';
 type SortDirection = 'asc' | 'desc';

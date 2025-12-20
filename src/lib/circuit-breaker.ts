@@ -83,7 +83,7 @@ export class CircuitBreaker {
   getOpenCircuits(): string[] {
     const now = Date.now();
     return Array.from(this.circuits.entries())
-      .filter(([_, circuit]) => {
+      .filter(([, circuit]) => {
         return circuit.isOpen && now - circuit.lastFailure <= this.resetTimeout;
       })
       .map(([endpoint]) => endpoint);

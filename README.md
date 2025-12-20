@@ -6,7 +6,9 @@ A modern, comprehensive network explorer and analytics platform for Xandeum pNod
 
 ## Status: LIVE & PRODUCTION READY
 
-XandScan queries live Xandeum pNode endpoints using the official pRPC API with optimized performance (6-7s load time) and intelligent caching.
+XandScan queries **9 verified live Xandeum pNode endpoints** using the official pRPC API with optimized performance (6-7s load time) and intelligent caching. All data is real-time and verified through circuit breaker health checks.
+
+**Quality Over Quantity**: We focus on deep analytics from nodes with open pRPC ports rather than listing all registered nodes. Every metric is live, verified, and actionable.
 
 ## Features
 
@@ -18,10 +20,14 @@ XandScan queries live Xandeum pNode endpoints using the official pRPC API with o
 - **Historical Analytics**: 24h/7d/30d/90d performance trends with interactive charts
 
 ### Unique Features
+- **Network Health Grading**: A-F letter grade system with composite scoring (uptime, active nodes, storage, latency, decentralization)
+- **Intelligence Layer**: AI-powered insights with real-time network event detection and risk assessment
 - **Health Score System**: Composite metrics based on uptime, success rate, latency, and storage optimization
-- **Geographic Distribution**: Visualize node locations across countries and regions
-- **Storage Analytics**: Monitor network-wide capacity and growth trends
-- **Performance Leaderboard**: Identify top-performing nodes by various metrics
+- **Geographic Distribution**: Interactive world map showing node distribution by country with rankings and metrics
+- **Top Performers Leaderboard**: Highlight best nodes across uptime, storage capacity, and latency categories
+- **Version Intelligence**: Track version distribution and upgrade trends across the network
+- **Live Status Indicators**: Real-time pulse animations showing active data streaming
+- **At-Risk Nodes Tracking**: Proactive monitoring of nodes requiring attention with categorized risk levels
 - **Modern UI**: Beautiful interface with smooth animations, loading skeletons, and full dark mode support
 - **Fully Responsive**: Optimized for desktop, tablet, and mobile devices
 - **Data Export**: Export node and network data to CSV/JSON formats
@@ -38,11 +44,13 @@ XandScan queries live Xandeum pNode endpoints using the official pRPC API with o
 
 ### Performance Features
 - **5-second timeout** - Fast failure detection
-- **Circuit Breaker** - Automatically skips failing nodes
-- **React.memo** - Prevents unnecessary re-renders
-- **No Retry Logic** - Fail fast for better UX
-- **Tree Shaking** - Removed unused dependencies (Zustand)
-- **Zero Vulnerabilities** - Latest secure dependencies
+- **Circuit Breaker Pattern** - Automatically skips failing nodes to prevent cascading delays
+- **React.memo Optimization** - Prevents unnecessary re-renders on expensive components
+- **No Retry Logic** - Fail fast strategy for better UX and faster load times
+- **Tree Shaking** - Removed unused dependencies for smaller bundle size
+- **Zero Vulnerabilities** - Latest secure dependencies with no npm audit warnings
+- **Parallel Data Fetching** - Queries 9 pNode endpoints simultaneously
+- **Smart Caching** - 60-second stale time prevents excessive network requests
 
 ## Quick Start
 

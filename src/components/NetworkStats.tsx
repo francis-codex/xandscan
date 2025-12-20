@@ -20,6 +20,7 @@ export const NetworkStatsDisplay = memo(function NetworkStatsDisplay({ stats }: 
       subtitle: `${stats.activeNodes} active, ${stats.inactiveNodes} inactive`,
       icon: Server,
       color: "text-blue-500",
+      pulse: true, // Add pulse animation
     },
     {
       title: "Storage Capacity",
@@ -49,7 +50,15 @@ export const NetworkStatsDisplay = memo(function NetworkStatsDisplay({ stats }: 
       {statCards.map((stat) => {
         const Icon = stat.icon;
         return (
-          <Card key={stat.title}>
+          <Card key={stat.title} className="relative overflow-hidden">
+            {stat.pulse && (
+              <div className="absolute top-2 right-2">
+                <div className="relative">
+                  <div className="w-2 h-2 bg-green-500 rounded-full animate-pulse"></div>
+                  <div className="absolute top-0 left-0 w-2 h-2 bg-green-500 rounded-full animate-ping"></div>
+                </div>
+              </div>
+            )}
             <CardHeader className="flex flex-row items-center justify-between space-y-0 pb-2">
               <CardTitle className="text-sm font-medium">
                 {stat.title}

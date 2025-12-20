@@ -53,7 +53,7 @@ export class PNodeClient {
    */
   private async makeRpcRequest<T>(
     method: PRpcMethod | string,
-    params?: any,
+    params?: unknown,
     specificEndpoint?: string
   ): Promise<T> {
     const endpoint = specificEndpoint || this.getNextEndpoint();
@@ -185,7 +185,7 @@ export class PNodeClient {
         node.publicKey === identifier ||
         node.ipAddress === identifier
       ) || null;
-    } catch (error) {
+    } catch {
       // Fallback to mock data
       if (process.env.NODE_ENV === 'development') {
         const mockNodes = this.getMockPNodes();
@@ -245,7 +245,7 @@ export class PNodeClient {
         node.publicKey.toLowerCase().includes(lowercaseQuery) ||
         node.ipAddress.includes(lowercaseQuery)
       );
-    } catch (error) {
+    } catch {
       return [];
     }
   }
@@ -257,7 +257,7 @@ export class PNodeClient {
     try {
       const allNodes = await this.getAllPNodes();
       return allNodes.filter(node => node.status === status);
-    } catch (error) {
+    } catch {
       return [];
     }
   }

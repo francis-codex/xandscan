@@ -11,7 +11,7 @@
 /**
  * Standard JSON-RPC 2.0 request structure
  */
-export interface JsonRpcRequest<T = any> {
+export interface JsonRpcRequest<T = unknown> {
   jsonrpc: '2.0';
   id: number | string;
   method: string;
@@ -21,7 +21,7 @@ export interface JsonRpcRequest<T = any> {
 /**
  * Standard JSON-RPC 2.0 response structure
  */
-export interface JsonRpcResponse<T = any> {
+export interface JsonRpcResponse<T = unknown> {
   jsonrpc: '2.0';
   id: number | string;
   result?: T;
@@ -34,7 +34,7 @@ export interface JsonRpcResponse<T = any> {
 export interface JsonRpcError {
   code: number;
   message: string;
-  data?: any;
+  data?: unknown;
 }
 
 /**

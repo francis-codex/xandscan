@@ -4,12 +4,15 @@ import { useMemo } from "react";
 import Link from "next/link";
 import { useAllPNodes, useNetworkStats } from "@/lib/hooks";
 import { NetworkStatsDisplay } from "@/components/NetworkStats";
+import { NetworkHealthGrade } from "@/components/NetworkHealthGrade";
 import { NodeCard } from "@/components/NodeCard";
 import { InsightsPanel } from "@/components/InsightsPanel";
 import { AtRiskNodesCard } from "@/components/AtRiskNodesCard";
 import { HealthScoreBreakdown } from "@/components/HealthScoreBreakdown";
 import { VersionDistribution } from "@/components/VersionDistribution";
 import { ExportButtons } from "@/components/ExportButtons";
+import { GeographicDistribution } from "@/components/GeographicDistribution";
+import { TopPerformers } from "@/components/TopPerformers";
 import { NetworkStatsGridSkeleton, NodeGridSkeleton } from "@/components/ui/skeleton";
 import { Button } from "@/components/ui/button";
 import { Card, CardContent } from "@/components/ui/card";
@@ -99,17 +102,33 @@ export default function Home() {
 
       {/* Main Content */}
       <main className="container mx-auto px-4 py-8">
-        {/* Network Stats */}
-        <section className="mb-8">
-          <h2 className="text-2xl font-semibold mb-4 text-foreground">
-            Network Overview
-          </h2>
-          {isLoading ? (
+        {/* Network Health Grade - Hero Section */}
+        {!isLoading && stats && (
+          <section className="mb-8">
+            <div className="grid gap-6 lg:grid-cols-4">
+              <div className="lg:col-span-1">
+                <NetworkHealthGrade stats={stats} />
+              </div>
+              <div className="lg:col-span-3">
+                <div className="h-full flex flex-col justify-center">
+                  <h2 className="text-2xl font-semibold mb-4 text-foreground">
+                    Network Overview
+                  </h2>
+                  <NetworkStatsDisplay stats={stats} />
+                </div>
+              </div>
+            </div>
+          </section>
+        )}
+
+        {isLoading && (
+          <section className="mb-8">
+            <h2 className="text-2xl font-semibold mb-4 text-foreground">
+              Network Overview
+            </h2>
             <NetworkStatsGridSkeleton />
-          ) : stats ? (
-            <NetworkStatsDisplay stats={stats} />
-          ) : null}
-        </section>
+          </section>
+        )}
 
         {/* Intelligence Layer - Phase 1 */}
         <section className="mb-8">
@@ -135,6 +154,17 @@ export default function Home() {
             Version Intelligence
           </h2>
           {nodes && <VersionDistribution nodes={nodes} />}
+        </section>
+
+        {/* Geographic & Performance Analytics */}
+        <section className="mb-8">
+          <h2 className="text-2xl font-semibold mb-4 text-foreground">
+            Network Analytics
+          </h2>
+          <div className="grid gap-6 lg:grid-cols-2">
+            {nodes && <GeographicDistribution nodes={nodes} />}
+            {nodes && <TopPerformers nodes={nodes} />}
+          </div>
         </section>
 
         {/* Top Performing Nodes */}

@@ -5,7 +5,7 @@
  * Maps PNodeStats → PNode format
  */
 
-import type { PNode, NetworkStats, StorageInfo, PerformanceMetrics } from '@/types/pnode';
+import type { PNode, NetworkStats } from '@/types/pnode';
 import type { PNodeStats } from '@/types/prpc';
 
 /**
