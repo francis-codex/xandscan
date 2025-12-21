@@ -10,31 +10,31 @@ export const metadata = {
 
 export default function DocsHome() {
   return (
-    <div className="space-y-8">
+    <div className="space-y-6 sm:space-y-8">
       <div>
-        <Badge variant="outline" className="mb-4">Documentation</Badge>
-        <h1 className="text-4xl font-bold mb-4">XandScan Documentation</h1>
-        <p className="text-xl text-muted-foreground">
+        <Badge variant="outline" className="mb-3 sm:mb-4 text-xs sm:text-sm">Documentation</Badge>
+        <h1 className="text-2xl sm:text-3xl lg:text-4xl font-bold mb-3 sm:mb-4">XandScan Documentation</h1>
+        <p className="text-base sm:text-lg lg:text-xl text-muted-foreground">
           Complete guide to deploying, using, and integrating with the Xandeum pNode Network Explorer
         </p>
       </div>
 
-      <div className="border-l-4 border-primary pl-6 my-8">
-        <h2 className="text-2xl font-semibold mb-3">What is XandScan?</h2>
-        <p className="text-muted-foreground mb-4">
+      <div className="border-l-4 border-primary pl-4 sm:pl-6 my-6 sm:my-8">
+        <h2 className="text-xl sm:text-2xl font-semibold mb-2 sm:mb-3">What is XandScan?</h2>
+        <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4">
           XandScan is a comprehensive network explorer and analytics platform for Xandeum pNodes (storage provider nodes).
           Built with Next.js and React, it provides real-time monitoring, performance metrics, and intelligent insights
           for the decentralized storage network.
         </p>
-        <p className="text-muted-foreground">
+        <p className="text-sm sm:text-base text-muted-foreground">
           The platform connects to 8 live Xandeum pNode endpoints via pRPC API, delivering accurate network data
           with optimized performance and intelligent caching.
         </p>
       </div>
 
       <div>
-        <h2 className="text-2xl font-semibold mb-4">Key Features</h2>
-        <ul className="space-y-2 text-muted-foreground">
+        <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">Key Features</h2>
+        <ul className="space-y-2 text-sm sm:text-base text-muted-foreground">
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">•</span>
             <span><strong>Live pNode Monitoring:</strong> Real-time data from 8 verified endpoints with automatic failover</span>
@@ -63,8 +63,8 @@ export default function DocsHome() {
       </div>
 
       <div>
-        <h2 className="text-2xl font-semibold mb-4">Quick Navigation</h2>
-        <div className="grid md:grid-cols-2 gap-4">
+        <h2 className="text-xl sm:text-2xl font-semibold mb-3 sm:mb-4">Quick Navigation</h2>
+        <div className="grid sm:grid-cols-2 gap-3 sm:gap-4">
           <Link href="/docs/guides/quick-start">
             <Card className="hover:border-primary transition-colors cursor-pointer h-full">
               <CardHeader>
@@ -143,9 +143,9 @@ export default function DocsHome() {
         </div>
       </div>
 
-      <div className="bg-muted rounded-lg p-6 border border-border">
-        <h3 className="font-semibold mb-3">Technical Stack</h3>
-        <div className="grid md:grid-cols-2 gap-4 text-sm">
+      <div className="bg-muted rounded-lg p-4 sm:p-6 border border-border">
+        <h3 className="text-base sm:text-lg font-semibold mb-3">Technical Stack</h3>
+        <div className="grid sm:grid-cols-2 gap-3 sm:gap-4 text-xs sm:text-sm">
           <div>
             <p className="font-medium mb-2">Frontend</p>
             <ul className="space-y-1 text-muted-foreground">
@@ -168,11 +168,11 @@ export default function DocsHome() {
       </div>
 
       <div>
-        <h3 className="text-xl font-semibold mb-3">Need Help?</h3>
-        <p className="text-muted-foreground mb-4">
+        <h3 className="text-lg sm:text-xl font-semibold mb-2 sm:mb-3">Need Help?</h3>
+        <p className="text-sm sm:text-base text-muted-foreground mb-3 sm:mb-4">
           If you encounter any issues or have questions:
         </p>
-        <ul className="space-y-2 text-muted-foreground">
+        <ul className="space-y-2 text-sm sm:text-base text-muted-foreground">
           <li className="flex items-start gap-2">
             <span className="text-primary mt-1">•</span>
             <span>Check the <Link href="/docs/guides/platform-guide" className="text-primary hover:underline">Platform Guide</Link> for common questions</span>

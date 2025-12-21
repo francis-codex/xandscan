@@ -46,7 +46,7 @@ export const NetworkStatsDisplay = memo(function NetworkStatsDisplay({ stats }: 
   ];
 
   return (
-    <div className="grid gap-4 md:grid-cols-2 lg:grid-cols-4">
+    <div className="grid gap-3 sm:gap-4 grid-cols-1 sm:grid-cols-2 lg:grid-cols-4">
       {statCards.map((stat) => {
         const Icon = stat.icon;
         return (
@@ -66,8 +66,8 @@ export const NetworkStatsDisplay = memo(function NetworkStatsDisplay({ stats }: 
               <Icon className={`h-4 w-4 ${stat.color}`} />
             </CardHeader>
             <CardContent>
-              <div className="text-2xl font-bold">{stat.value}</div>
-              <p className="text-xs text-gray-500 dark:text-gray-400 mt-1">
+              <div className="text-xl sm:text-2xl font-bold">{stat.value}</div>
+              <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 mt-1">
                 {stat.subtitle}
               </p>
             </CardContent>
